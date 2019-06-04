@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const userRouter = require('./routes/user');
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
@@ -10,5 +11,6 @@ mongoose.connect(process.env.MONGODB_URL, {
 const app = express();
 
 app.use(express.json());
+app.use(userRouter);
 
 module.exports = app;
