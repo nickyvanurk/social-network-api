@@ -30,19 +30,15 @@ Install required npm modules
 npm install
 ```
 
-Setup local enviroment variables
-
-> Linux
+Setup local enviroment variables (Linux)
 
 ```
 cd ./social-network-api && mkdir ./config && echo -e 'PORT=3000\nMONGODB_URL=mongodb://127.0.0.1:27017/social-network-api\nJWT_SECRET=thisismysecret' > ./config/dev.env && echo -e 'PORT=3000\nMONGODB_URL=mongodb://127.0.0.1:27017/social-network-api-test\nJWT_SECRET=thisismysecret' > ./config/test.env
 
 ```
 
-Start the MongoDB database
+Start the MongoDB database (Linux)
 
->Linux
->
 ```
 sudo service mongod start
 ```
@@ -63,4 +59,4 @@ npm test
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [MIT License](LICENSE).
