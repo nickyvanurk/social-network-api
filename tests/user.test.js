@@ -82,3 +82,10 @@ test('Logout all user', async () => {
   const user = await User.findById(userOneId);
   expect(user.tokens).toHaveLength(0);
 });
+
+test('Read user profile', async () => {
+  const response = await request(app)
+    .get('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .expect(200);
+});
