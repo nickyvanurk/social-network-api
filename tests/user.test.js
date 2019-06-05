@@ -20,4 +20,15 @@ test('Signup a new user', async () => {
   // Assert if user is saved to database
   const user = await User.findById(response.body.user._id);
   expect(user).not.toBeNull();
+
+  // Assertions about the response
+  expect(response.body).toMatchObject({
+    user: {
+      email: 'nicky@example.com',
+      name: 'Nicky',
+      age: 25,
+      sex: 'male'
+    },
+    token: user.tokens[0].token
+  });
 });
