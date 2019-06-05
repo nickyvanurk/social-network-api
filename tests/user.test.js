@@ -31,4 +31,7 @@ test('Signup a new user', async () => {
     },
     token: user.tokens[0].token
   });
+
+  // Assert password isn't stored as plaintext in database
+  expect(user.password).not.toBe('12345678');
 });

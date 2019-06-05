@@ -19,6 +19,7 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",

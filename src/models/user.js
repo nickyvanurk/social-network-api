@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -64,5 +65,16 @@ userSchema.methods.generateAuthToken = async function () {
 
   return token;
 };
+
+// Hash the plain-text password before saving
+userSchema.pre('save', async function (next) {
+  const user = this;
+
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+
+  next();
+});
 
 module.exports = mongoose.model('User', userSchema);
