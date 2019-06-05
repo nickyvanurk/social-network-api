@@ -88,4 +88,12 @@ test('Read user profile', async () => {
     .get('/users/me')
     .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
     .expect(200);
+  
+  // Assertions about the response
+  expect(response.body).toMatchObject({
+    email: 'jane@example.com',
+    name: 'Jane',
+    age: 20,
+    sex: 'female'
+  });
 });
