@@ -65,3 +65,10 @@ test('Login existing user', async () => {
     token: user.tokens[1].token
   });
 });
+
+test('Logout user', async () => {
+  const response = await request(app)
+    .post('/users/logout')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .expect(200);
+});
