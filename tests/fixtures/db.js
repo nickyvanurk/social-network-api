@@ -10,7 +10,11 @@ const userOne = {
   name: 'Jane',
   age: 20,
   sex: 'female',
-  tokens: [{ token: jwt.sign({_id: userOneId}, process.env.JWT_SECRET) }]
+  tokens: [
+    { token: jwt.sign({_id: userOneId}, process.env.JWT_SECRET) },
+    { token: jwt.sign({_id: userOneId}, process.env.JWT_SECRET) },
+    { token: jwt.sign({_id: userOneId}, process.env.JWT_SECRET) }
+  ]
 };
 
 const setupDatabase = async () => {

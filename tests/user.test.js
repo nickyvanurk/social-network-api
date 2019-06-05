@@ -52,7 +52,7 @@ test('Login existing user', async () => {
   
   // Assert new token is saved to database
   const user = await User.findById(userOneId);
-  expect(response.body.token).toBe(user.tokens[1].token);
+  expect(response.body.token).toBe(user.tokens[user.tokens.length - 1].token);
 
   // Assertions about the response
   expect(response.body).toMatchObject({
@@ -62,7 +62,7 @@ test('Login existing user', async () => {
       age: 20,
       sex: 'female'
     },
-    token: user.tokens[1].token
+    token: user.tokens[user.tokens.length - 1].token
   });
 });
 
@@ -71,4 +71,14 @@ test('Logout user', async () => {
     .post('/users/logout')
     .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
     .expect(200);
+});
+
+test('Logout all user', async () => {
+  const response = await request(app)
+    .post('/users/logoutall')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .expect(200);
+  
+  const user = await User.findById(userOneId);
+  expect(user.tokens).toHaveLength(0);
 });
