@@ -97,3 +97,29 @@ test('Read user profile', async () => {
     sex: 'female'
   });
 });
+
+test('Update valid authenticated user fields', async () => {
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send({ name: 'Janice' })
+    .expect(200);
+  
+  // Assert user field is updated
+  const user = await User.findById(userOneId);
+  expect(user.name).toBe('Janice');
+});
+
+test('Not update invalid authenticated user fields', async () => {
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send()
+    .expect(400);
+  
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send({location: 'New York'})
+    .expect(400);
+});
