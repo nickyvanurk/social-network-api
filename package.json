@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.7.5",
     "supertest": "^4.0.2",
     "validator": "^11.0.0"
   }
